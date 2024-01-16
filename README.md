@@ -4,10 +4,18 @@ A simple [SABnzbd](https://sabnzbd.org/) prometheus exporter written in Go.
 
 ## Usage
 
+Metrics are served by default on `http://127.0.0.1:3008/metrics`
+
+### Local Running 
+
+```shell
+go run . --sabzbd-address 'http://sabnzbd:8080' --sabnzbd-api-key ...
+```
+
 ### Docker
 
 ```shell
-docker run -d --restart=always -p 3008:3008 -e 'SABNZBD_EXPORTER_INSTANCE_ADDR=http://sabnzbd:8080' -e 'SABNZBD_EXPORTER_API_KEY=....' -e 'SABNZBD_EXPORTER_TZ=UTC' ghcr.io/mohamed-essam/sabnzbd-exporter:main
+docker run -d --restart=always -p 3008:3008 -e 'SABNZBD_EXPORTER_INSTANCE_ADDR=http://sabnzbd:8080' -e 'SABNZBD_EXPORTER_API_KEY=....' -e 'SABNZBD_EXPORTER_TZ=UTC' ghcr.io/mohamed-essam/sabnzbd-exporter:v0.0.1
 ```
 
 ### Docker compose
@@ -17,7 +25,7 @@ version: '3.8'
 
 services:
   sabnzbd-exporter:
-    image: ghcr.io/mohamed-essam/sabnzbd-exporter:main
+    image: ghcr.io/mohamed-essam/sabnzbd-exporter:v0.0.1
     environment:
       SABNZBD_EXPORTER_INSTANCE_ADDR: http://sabnzbd:8080
       SABNZBD_EXPORTER_API_KEY: ....
